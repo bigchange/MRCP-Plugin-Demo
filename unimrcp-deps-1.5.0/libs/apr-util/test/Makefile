@@ -10,7 +10,7 @@ srcdir = .
 #   programs such as sockperf, that have to be invoked in a special sequence
 #   or with special parameters
 
-INCLUDES = -I/home/cotin/share/unimrcp-deps-1.5.0/libs/apr-util/include -I/home/cotin/share/unimrcp-deps-1.5.0/libs/apr-util/include/private  -I/home/cotin/share/unimrcp-deps-1.5.0/libs/apr/include  -I/home/cotin/share/unimrcp-deps-1.5.0/libs/apr-util/xml/expat/lib
+INCLUDES = -I/opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr-util/include -I/opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr-util/include/private -I/usr/include/postgresql  -I/opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr/include  -I/opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr-util/xml/expat/lib
 
 STDTEST_PORTABLE = dbd testall
 
@@ -28,8 +28,8 @@ LOCAL_LIBS = ../libaprutil-${APRUTIL_MAJOR_VERSION}1.la
 CLEAN_TARGETS = manyfile.bin testfile.txt data/sqlite*.db
 
 # bring in rules.mk for standard functionality
-include /home/cotin/share/unimrcp-deps-1.5.0/libs/apr-util/build/rules.mk
-APRUTIL_LIBS = /home/cotin/share/unimrcp-deps-1.5.0/libs/apr-util/xml/expat/libexpat.la /home/cotin/share/unimrcp-deps-1.5.0/libs/apr/libapr-1.la -lrt -lcrypt -lpthread -ldl
+include /opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr-util/build/rules.mk
+APRUTIL_LIBS = /opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr-util/xml/expat/libexpat.la /opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr/libapr-1.la -lrt -lcrypt -lpthread -ldl
 APRUTIL_LDFLAGS = $(ALL_LDFLAGS) -no-install 
 
 # link programs using -no-install to get real executables not
@@ -61,7 +61,7 @@ check: $(TESTALL_COMPONENTS) $(STDTEST_PORTABLE) $(STDTEST_NONPORTABLE)
 	progfailed=""; \
 	for prog in $(STDTEST_NONPORTABLE) $(STDTEST_PORTABLE); do \
 	        if test "$$prog" = 'dbd'; then \
-			for driver in none ; do \
+			for driver in none  pgsql sqlite3; do \
 				if test "$$driver" != 'none'; then \
 					LD_LIBRARY_PATH="`echo "../crypto/.libs:../dbm/.libs:../dbd/.libs:../ldap/.libs:$$LD_LIBRARY_PATH" | sed -e 's/::*$$//'`" \
 					./$$prog $$driver; \

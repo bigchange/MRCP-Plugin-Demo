@@ -123,6 +123,7 @@ MPF_DECLARE(mpf_detector_event_e) mpf_activity_detector_process(mpf_activity_det
 	if((frame->type & MEDIA_FRAME_TYPE_AUDIO) == MEDIA_FRAME_TYPE_AUDIO) {
 		/* first, calculate current activity level of processed frame */
 		level = mpf_activity_detector_level_calculate(frame);
+  	        apt_log(MPF_LOG_MARK,APT_PRIO_INFO,"Activity Detector level [%"APR_SIZE_T_FMT"],[%"APR_SIZE_T_FMT"]",level,detector->level_threshold);
 #if 0
 		apt_log(MPF_LOG_MARK,APT_PRIO_INFO,"Activity Detector [%"APR_SIZE_T_FMT"],[%"APR_SIZE_T_FMT"]",level,detector->level_threshold);
 	} else {

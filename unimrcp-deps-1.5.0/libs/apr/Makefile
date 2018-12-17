@@ -1,8 +1,8 @@
 
 srcdir=.
 
-top_srcdir=/home/cotin/share/unimrcp-deps-1.5.0/libs/apr
-top_blddir=/home/cotin/share/unimrcp-deps-1.5.0/libs/apr
+top_srcdir=/opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr
+top_blddir=/opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr
 
 #
 # APR (Apache Portable Runtime) library Makefile.
@@ -29,7 +29,7 @@ INSTALL_SUBDIRS=none
 TARGET_LIB = libapr-${APR_MAJOR_VERSION}.la
 APR_PCFILE = apr-$(APR_MAJOR_VERSION).pc
 APR_CONFIG = apr-$(APR_MAJOR_VERSION)-config
-INSTALL = /bin/install -c
+INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 
 #
@@ -41,8 +41,8 @@ TARGETS = $(TARGET_LIB) apr.exp apr-config.out build/apr_rules.out
 LT_VERSION = -version-info 5:2:5
 
 # bring in rules.mk for standard functionality
-include /home/cotin/share/unimrcp-deps-1.5.0/libs/apr/build/apr_rules.mk
-include /home/cotin/share/unimrcp-deps-1.5.0/libs/apr/build-outputs.mk
+include /opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr/build/apr_rules.mk
+include /opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr/build-outputs.mk
 
 CLEAN_TARGETS = apr-config.out apr.exp exports.c export_vars.c .make.dirs \
 	build/apr_rules.out tools/gen_test_char \

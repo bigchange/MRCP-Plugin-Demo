@@ -24,9 +24,9 @@
 #
 # Configuration variables
 #
-apr_builddir=/home/cotin/share/unimrcp-deps-1.5.0/libs/apr
-apr_builders=/home/cotin/share/unimrcp-deps-1.5.0/libs/apr/build
-top_builddir=/home/cotin/share/unimrcp-deps-1.5.0/libs/apr
+apr_builddir=/opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr
+apr_builders=/opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr/build
+top_builddir=/opt/idmg/unimrcp/MRCP-Plugin-Demo/unimrcp-deps-1.5.0/libs/apr
 
 # Some layouts require knowing what version we are at.
 APR_MAJOR_VERSION=1
@@ -35,7 +35,7 @@ APR_DOTTED_VERSION=1.5.2
 CC=gcc
 RM=rm
 AWK=gawk
-SHELL=/bin/sh
+SHELL=/bin/bash
 LIBTOOL=$(SHELL) $(apr_builddir)/libtool
 
 # compilation and linking flags that are supposed to be set only by the user.

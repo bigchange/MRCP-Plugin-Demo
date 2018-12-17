@@ -5,7 +5,7 @@ plugin_LTLIBRARIES         = xfyunrecog.la
 xfyunrecog_la_SOURCES       = src/xfyun_recog_engine.c
 xfyunrecog_la_LDFLAGS       = $(UNIMRCP_PLUGIN_OPTS) \
                               -L$(top_srcdir)/plugins/third-party/xfyun/libs/x64 \
-                              -lmsc -ldl -lpthread -lrt
+                              -lmsc -ldl -lpthread -lrt -lstdc++
 xfyunrecog_ladir            = $(libdir)
 xfyunrecog_la_DATA          = $(top_srcdir)/plugins/third-party/xfyun/libs/x64/libmsc.so
 

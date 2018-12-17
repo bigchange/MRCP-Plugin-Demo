@@ -57,7 +57,7 @@
 /* #undef HAVE_LDAP_SSL_H */
 
 /* Define to 1 if you have the <libpq-fe.h> header file. */
-/* #undef HAVE_LIBPQ_FE_H */
+#define HAVE_LIBPQ_FE_H 1
 
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
@@ -111,7 +111,7 @@
 /* #undef HAVE_PRERROR_H */
 
 /* Define to 1 if you have the <sqlite3.h> header file. */
-/* #undef HAVE_SQLITE3_H */
+#define HAVE_SQLITE3_H 1
 
 /* Define to 1 if you have the <sqlite.h> header file. */
 /* #undef HAVE_SQLITE_H */

@@ -150,7 +150,7 @@ MRCP_PLUGIN_LOG_SOURCE_IMPLEMENT(RECOG_PLUGIN,"RECOG-PLUGIN")
 static apt_bool_t xfyun_login()
 {
 	int			ret						=	MSP_SUCCESS;
-	const char* login_params			=	"appid = xxxxxxxx, work_dir = ."; // 登录参数，appid与msc库绑定,请勿随意改动
+	const char* login_params			=	"appid = 5bf61c3a, work_dir = .";
 
 	/* 用户登录 */
 	ret = MSPLogin(NULL, NULL, login_params); //第一个参数是用户名，第二个参数是密码，均传NULL即可，第三个参数是登录参数	
@@ -186,6 +186,8 @@ MRCP_PLUGIN_DECLARE(mrcp_engine_t*) mrcp_plugin_create(apr_pool_t *pool)
 	if(vtable) {
 		vtable->process_msg = xfyun_recog_msg_process;
 	}
+
+        
 
 	/* create engine base */
 	return mrcp_engine_create(
@@ -240,6 +242,8 @@ static mrcp_engine_channel_t* xfyun_recog_engine_channel_create(mrcp_engine_t *e
 	recog_channel->recog_request = NULL;
 	recog_channel->stop_response = NULL;
 	recog_channel->detector = mpf_activity_detector_create(pool);
+	// 设置level
+	mpf_activity_detector_level_set(recog_channel->detector, 300);
 	recog_channel->audio_out = NULL;
 	recog_channel->session_id = NULL;
 	recog_channel->last_result = NULL;
@@ -547,16 +551,20 @@ static apt_bool_t xfyun_recog_stream_recog(xfyun_recog_channel_t *recog_channel,
 	if(NULL == recog_channel->session_id) {
 		return FALSE;
 	}
+
 	ret = QISRAudioWrite(recog_channel->session_id, voice_data, voice_len, aud_stat, &ep_stat, &rec_stat);
 	if (MSP_SUCCESS != ret)
 	{
 		apt_log(RECOG_LOG_MARK,APT_PRIO_WARNING,"[xfyun] QISRAudioWrite failed! error code:%d", ret);
 		return FALSE;
-	}
+	
+        }
+        usleep(200*1000); // //模拟人说话时间间隙。200ms对应10帧的音频
 	if(MSP_REC_STATUS_SUCCESS != rec_stat && MSP_AUDIO_SAMPLE_LAST != aud_stat) {
 		// apt_log(RECOG_LOG_MARK,APT_PRIO_INFO,"[xfyun] no need recog,rec_stat=%d,aud_stat=%d",rec_stat,aud_stat);
 		return TRUE;
 	}
+       	
 	while (1) 
 	{
 		const char *rslt = QISRGetResult(recog_channel->session_id, &rec_stat, 0, &ret);

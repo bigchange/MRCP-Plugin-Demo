@@ -6,7 +6,7 @@ xfyunsynth_la_SOURCES       = src/xfyun_synth_engine.c
 
 xfyunsynth_la_LDFLAGS       = $(UNIMRCP_PLUGIN_OPTS) \
                               -L$(top_srcdir)/plugins/third-party/xfyun/libs/x64 \
-                              -lmsc -ldl -lpthread -lrt
+                              -lmsc -ldl -lpthread -lrt -lstdc++
 xfyunsynth_ladir            = $(libdir)
 
 include $(top_srcdir)/build/rules/uniplugin.am
